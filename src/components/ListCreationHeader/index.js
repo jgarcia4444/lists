@@ -31,13 +31,18 @@ const ListCreationHeader = () => {
         }
     }
 
+    const handleCompleteClick = (itemIndex) => {
+        // update the items array using the item index
+        // Update the the complete property to the opposite of what it is
+    }
+
     const stateBasedListCreation = () => {
         if (creatingList) {
             const newItemObject = {
                 newItemText, 
                 changeFunc: (val) => setNewItemText(val.target.value),
             }
-            return <AddItems addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
+            return <AddItems handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
         } else {
             const listNameObject = {
                 newListName,

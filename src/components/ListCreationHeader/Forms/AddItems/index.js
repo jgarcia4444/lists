@@ -2,7 +2,7 @@ import React from 'react'
 import AddItemsForm from './AddItemsForm';
 import StagedList from './StagedList';
 
-const AddItems = ({listName, list, newItemInfo, addItemClick}) => {
+const AddItems = ({listName, list, newItemInfo, addItemClick, handleCompleteClick}) => {
 
     return (
         <div className="flex flex-row mt-12">
@@ -10,7 +10,7 @@ const AddItems = ({listName, list, newItemInfo, addItemClick}) => {
                 <AddItemsForm addItemClick={addItemClick} newItemInfo={newItemInfo}/>
             </div>
             <div className="w-1/2">
-                <StagedList listName={listName} list={list}/>
+                <StagedList handleCompleteClick={handleCompleteClick} listName={listName} list={list}/>
             </div>
         </div>
     )
