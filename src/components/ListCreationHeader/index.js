@@ -23,9 +23,10 @@ const ListCreationHeader = () => {
     }
 
     const handleAddItemClick = () => {
+        console.log("New Item Text", newItemText)
         if (newItemText !== "") {
-            const newList = itemList.push(newItemText);
-            setItemList(newList);
+            const newItem = {item: newItemText, complete: false}
+            setItemList(itemList.concat(newItem));
             setNewItemText("");
         }
     }

@@ -2,12 +2,12 @@ import React from 'react'
 import AddItemsForm from './AddItemsForm';
 import StagedList from './StagedList';
 
-const AddItems = ({listName, list, newItemInfo}) => {
+const AddItems = ({listName, list, newItemInfo, addItemClick}) => {
 
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row mt-12">
             <div className="w-1/2">
-                <AddItemsForm newItemInfo={newItemInfo}/>
+                <AddItemsForm addItemClick={addItemClick} newItemInfo={newItemInfo}/>
             </div>
             <div className="w-1/2">
                 <StagedList listName={listName} list={list}/>
