@@ -2,8 +2,10 @@ import React from 'react'
 
 const List = ({listInfo, index}) => {
 
+    const {listName, itemList} = listInfo;
+
     return (
-        <div className=""></div>
+        <div className="">{listName}{itemList.length}</div>
     )
 };
 
