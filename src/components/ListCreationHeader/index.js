@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import AddItems from './Forms/AddItems';
 import AddListName from './Forms/AddListName';
 
-const ListCreationHeader = () => {
+const ListCreationHeader = ({sendListToMyList}) => {
 
     const [creatingList, setCreatingList] = useState(false);
     const [newListName, setNewListName] = useState("");
@@ -23,7 +23,6 @@ const ListCreationHeader = () => {
     }
 
     const handleAddItemClick = () => {
-        console.log("New Item Text", newItemText)
         if (newItemText !== "") {
             const newItem = {item: newItemText, complete: false}
             setItemList(itemList.concat(newItem));
@@ -36,13 +35,29 @@ const ListCreationHeader = () => {
         // Update the the complete property to the opposite of what it is
     }
 
+    const clearStagedInfo = () => {
+        setItemList([]);
+        setListName("");
+        setNewItemText("");
+        setCreatingList(false);
+    }
+
+    const handleSaveList = () => {
+        let listInfo = {
+            listName,
+            itemList,
+        };
+        sendListToMyList(listInfo);
+        clearStagedInfo()
+    }
+
     const stateBasedListCreation = () => {
         if (creatingList) {
             const newItemObject = {
                 newItemText, 
                 changeFunc: (val) => setNewItemText(val.target.value),
             }
-            return <AddItems handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
+            return <AddItems handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
         } else {
             const listNameObject = {
                 newListName,
