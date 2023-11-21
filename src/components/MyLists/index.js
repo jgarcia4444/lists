@@ -9,8 +9,13 @@ const MyLists = ({myLists}) => {
     }
 
     return (
-        <div className="">
+        <div className="w-full mt-24">
+            <div className="w-full">
+                <h2 className="">My List{myLists.length > 1 ? "s" : ""}</h2>
+            </div>
+        <div className="flex flex-row items-center overflow-x-auto w-full">
             {renderMyLists()}
+        </div>
         </div>
     )
 };

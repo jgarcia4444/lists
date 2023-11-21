@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import AddItems from './Forms/AddItems';
 import AddListName from './Forms/AddListName';
@@ -23,11 +23,15 @@ const ListCreationHeader = ({sendListToMyList}) => {
     }
 
     const handleAddItemClick = () => {
+        console.log("Add Item clicked!");
+        console.log("new item text", newItemText);
         if (newItemText !== "") {
             const newItem = {item: newItemText, complete: false}
-            setItemList(itemList.concat(newItem));
             setNewItemText("");
+            setItemList(itemList.concat(newItem));
+            console.log("new item text", newItemText);
         }
+        setNewItemText("");
     }
 
     const handleCompleteClick = (itemIndex) => {
@@ -67,6 +71,10 @@ const ListCreationHeader = ({sendListToMyList}) => {
             return <AddListName createClick={handleCreateClick} valueInfo={listNameObject} />
         }
     }
+
+    useEffect(() => {
+        setNewItemText("");
+    },[itemList])
 
     return (
         <div className="">
