@@ -8,7 +8,7 @@ const HeaderInput = ({valueInfo, label}) => {
     return (
         <div className="w-full">
             <FormInputLabel text={label} />
-            <input type="text" className="w-full shadow-inner shadow-blue-500 rounded-lg bg-blue-500 bg-opacity-20" value={listName} onChange={changeFunc} />
+            <input placeholder={label} type="text" className="w-full shadow-inner shadow-blue-200 text-white px-2 rounded-lg bg-blue-500 bg-opacity-30" value={listName} onChange={changeFunc} />
         </div>
     )
 };
