@@ -11,6 +11,7 @@ const ListCreationHeader = ({sendListToMyList}) => {
     const [listName, setListName] = useState("");
     const [itemList, setItemList] = useState([]);
     const [newItemText, setNewItemText] = useState("");
+    const [itemSubmitted, setItemSubmitted] = useState(false);
 
     const handleCreateClick = () => {
         if (newListName !== "") {
@@ -27,11 +28,12 @@ const ListCreationHeader = ({sendListToMyList}) => {
         console.log("new item text", newItemText);
         if (newItemText !== "") {
             const newItem = {item: newItemText, complete: false}
-            setNewItemText("");
             setItemList(itemList.concat(newItem));
+            setNewItemText("");
             console.log("new item text", newItemText);
         }
         setNewItemText("");
+        console.log("new item text", newItemText);
     }
 
     const handleCompleteClick = (itemIndex) => {
@@ -55,13 +57,19 @@ const ListCreationHeader = ({sendListToMyList}) => {
         clearStagedInfo()
     }
 
+    const clearInput = () => {
+        console.log("TESTTTTT");
+        setNewItemText("");
+        setItemSubmitted(false);
+    }
+
     const stateBasedListCreation = () => {
         if (creatingList) {
             const newItemObject = {
                 newItemText, 
                 changeFunc: (val) => setNewItemText(val.target.value),
             }
-            return <AddItems handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
+            return <AddItems clearInput={clearInput} itemSubmitted={itemSubmitted} handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
         } else {
             const listNameObject = {
                 newListName,
@@ -72,9 +80,9 @@ const ListCreationHeader = ({sendListToMyList}) => {
         }
     }
 
-    useEffect(() => {
-        setNewItemText("");
-    },[itemList])
+    // useEffect(() => {
+    //     setNewItemText("");
+    // },[itemList, newItemText])
 
     return (
         <div className="">
