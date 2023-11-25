@@ -5,14 +5,8 @@ import AddListName from './Forms/AddListName';
 
 const ListCreationHeader = ({sendListToMyList}) => {
 
-
-    const [creatingList, setCreatingList] = useState(false);
     const [newListName, setNewListName] = useState("");
-    const [listNameError, setListNameError] = useState("");
-    const [listName, setListName] = useState("");
-    const [itemList, setItemList] = useState([]);
     const [newItemText, setNewItemText] = useState("");
-    const [itemSubmitted, setItemSubmitted] = useState(false);
 
     const handleCreateClick = () => {
         if (newListName !== "") {
@@ -25,16 +19,12 @@ const ListCreationHeader = ({sendListToMyList}) => {
     }
 
     const handleAddItemClick = () => {
-        console.log("Add Item clicked!");
-        console.log("new item text", newItemText);
         if (newItemText !== "") {
             const newItem = {item: newItemText, complete: false}
             setItemList(itemList.concat(newItem));
             setNewItemText("");
-            console.log("new item text", newItemText);
         }
         setNewItemText("");
-        console.log("new item text", newItemText);
     }
 
     const handleCompleteClick = (itemIndex) => {
@@ -80,10 +70,6 @@ const ListCreationHeader = ({sendListToMyList}) => {
             return <AddListName createClick={handleCreateClick} valueInfo={listNameObject} />
         }
     }
-
-    // useEffect(() => {
-    //     setNewItemText("");
-    // },[itemList, newItemText])
 
     return (
         <div className="">
