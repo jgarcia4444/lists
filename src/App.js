@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import MyLists from './components/MyLists';
 
+import MyLists from './components/MyLists';
 import ListCreationHeader from './components/ListCreationHeader';
 
 const App = () => {
