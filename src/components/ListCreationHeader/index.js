@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
+import { connect } from 'react-redux';
 
 import AddItems from './Forms/AddItems';
 import AddListName from './Forms/AddListName';
 
-const ListCreationHeader = ({sendListToMyList}) => {
+import setListName from '../../redux/actions/listActions/setListName';
+
+const ListCreationHeader = ({sendListToMyList, setListName}) => {
 
     const [newListName, setNewListName] = useState("");
     const [newItemText, setNewItemText] = useState("");
@@ -78,4 +81,19 @@ const ListCreationHeader = ({sendListToMyList}) => {
     )
 }
 
-export default ListCreationHeader;
+const mapStateToProps = state => {
+    return {
+        
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setListName: (listName) => dispatch(setListName(listName)),
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ListCreationHeader);
