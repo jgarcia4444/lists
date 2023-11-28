@@ -1,20 +1,26 @@
 import React, {useState, useEffect} from 'react'
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 import AddItems from './Forms/AddItems';
 import AddListName from './Forms/AddListName';
 
 import setListName from '../../redux/actions/listActions/setListName';
 
-const ListCreationHeader = ({sendListToMyList, setListName}) => {
+const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setListNameError}) => {
 
     const [newListName, setNewListName] = useState("");
     const [newItemText, setNewItemText] = useState("");
 
+    const {creatingList} = listCreation;
+
+    const dispatch = useDispatch();
+    
+    const toggleCreatingList = dispatch({type: "TOGGLE_CREATING_LIST"});
+
     const handleCreateClick = () => {
         if (newListName !== "") {
             setListName(newListName);
-            setCreatingList(true);
+            toggleCreatingList();
             setListNameError("");
         } else {
             setListNameError("Cannot be left blank");
@@ -39,7 +45,7 @@ const ListCreationHeader = ({sendListToMyList, setListName}) => {
         setItemList([]);
         setListName("");
         setNewItemText("");
-        setCreatingList(false);
+        toggleCreatingList();
     }
 
     const handleSaveList = () => {
@@ -83,13 +89,14 @@ const ListCreationHeader = ({sendListToMyList, setListName}) => {
 
 const mapStateToProps = state => {
     return {
-        
+        listCreation: state.listCreation,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         setListName: (listName) => dispatch(setListName(listName)),
+        setListNameError: (errorMessage) => dispatch({type: "SET_LIST_NAME_ERROR", errorMessage})
     }
 }
 
