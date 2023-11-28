@@ -6,12 +6,13 @@ import AddListName from './Forms/AddListName';
 
 import setListName from '../../redux/actions/listActions/setListName';
 
-const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setListNameError}) => {
+const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setListNameError, itemListAppend, clearStagedList}) => {
 
     const [newListName, setNewListName] = useState("");
     const [newItemText, setNewItemText] = useState("");
 
-    const {creatingList} = listCreation;
+    const {creatingList, stagedList} = listCreation;
+    const {itemList, listName} = stagedList;
 
     const dispatch = useDispatch();
     
@@ -30,7 +31,7 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
     const handleAddItemClick = () => {
         if (newItemText !== "") {
             const newItem = {item: newItemText, complete: false}
-            setItemList(itemList.concat(newItem));
+            itemListAppend(newItem);
             setNewItemText("");
         }
         setNewItemText("");
@@ -42,8 +43,7 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
     }
 
     const clearStagedInfo = () => {
-        setItemList([]);
-        setListName("");
+        clearStagedList()
         setNewItemText("");
         toggleCreatingList();
     }
@@ -58,7 +58,6 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
     }
 
     const clearInput = () => {
-        console.log("TESTTTTT");
         setNewItemText("");
         setItemSubmitted(false);
     }
@@ -96,7 +95,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         setListName: (listName) => dispatch(setListName(listName)),
-        setListNameError: (errorMessage) => dispatch({type: "SET_LIST_NAME_ERROR", errorMessage})
+        setListNameError: (errorMessage) => dispatch({type: "SET_LIST_NAME_ERROR", errorMessage}),
+        itemListAppend: (newItem) => dispatch({type: "APPEND_TO_ITEM_LIST", newItem}),
+        clearStagedList: () => dispatch({type: "CLEAR_STAGED_LIST"}),
     }
 }
 

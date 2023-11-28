@@ -32,6 +32,22 @@ const ListCreationReducer = (state=initialState, action) => {
                 creatingList: false,
                 listNameError: action.errorMessage,
             }
+        case "APPEND_TO_ITEM_LIST":
+            return {
+                ...state,
+                stagedList: {
+                    ...state.stagedList,
+                    items: state.items.concat(action.newItem),
+                }
+            }
+        case "CLEAR_STAGED_LIST":
+            return {
+                ...state,
+                stagedList: {
+                    items: [],
+                    listName: "",
+                },
+            }
         default:
             return state
     }
