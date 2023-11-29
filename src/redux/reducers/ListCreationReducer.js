@@ -48,6 +48,12 @@ const ListCreationReducer = (state=initialState, action) => {
                     listName: "",
                 },
             }
+        case "LIST_NAME_ERROR": 
+            return {
+                ...state,
+                listNameError: action.errorMessage,
+            }
+            
         default:
             return state
     }

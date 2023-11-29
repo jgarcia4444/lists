@@ -12,7 +12,7 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
     const [newItemText, setNewItemText] = useState("");
 
     const {creatingList, stagedList, listNameError} = listCreation;
-    const {itemList, listName} = stagedList;
+    const {items, listName} = stagedList;
 
     const dispatch = useDispatch();
     
@@ -51,7 +51,7 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
     const handleSaveList = () => {
         let listInfo = {
             listName,
-            itemList,
+            items,
         };
         sendListToMyList(listInfo);
         clearStagedInfo()
@@ -67,7 +67,7 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
                 newItemText, 
                 changeFunc: (val) => setNewItemText(val.target.value),
             }
-            return <AddItems clearInput={clearInput} handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
+            return <AddItems clearInput={clearInput} handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} newItemInfo={newItemObject} />
         } else {
             const listNameObject = {
                 newListName,
