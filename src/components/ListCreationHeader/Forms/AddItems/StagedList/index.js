@@ -11,9 +11,7 @@ const StagedList = ({stagedList, handleCompleteClick}) => {
     const renderItems = () => {
         if (items.length > 0) {
             return items.map((itemInfo, i) => {
-                let adjustedItemInfo = itemInfo;
-                adjustedItemInfo["id"] = i;
-                return <ListItem handleCompleteClick={handleCompleteClick} itemInfo={adjustedItemInfo} key={`${i}-${itemInfo.item}`} />
+                return <ListItem id={i} handleCompleteClick={handleCompleteClick} itemInfo={itemInfo} key={`${i}-${itemInfo.item}`} />
             } )
         } else {
             return ""

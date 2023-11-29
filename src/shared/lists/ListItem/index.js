@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ListItem = ({itemInfo, handleCompleteClick}) => {
-    const {item, complete, id} = itemInfo; 
+const ListItem = ({itemInfo, handleCompleteClick, id}) => {
+    const {item, complete} = itemInfo; 
     return (
         <div className={`flex flex-row py-2 bg-black transition-all duration-300 mb-1 rounded-lg ${id % 2 === 0 ? "bg-opacity-10 hover:bg-opacity-20" : "bg-opacity-50 hover:bg-opacity-60"}`}>
             <div className="w-1/4 flex justify-center">

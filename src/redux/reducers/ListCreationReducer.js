@@ -4,6 +4,7 @@ const initialState = {
     creatingList: false,
     listNameError: "",
     stagedList: {
+        newItemError: "",
         listName: "",
         items: [],
     },
@@ -53,7 +54,22 @@ const ListCreationReducer = (state=initialState, action) => {
                 ...state,
                 listNameError: action.errorMessage,
             }
-            
+        case "NEW_ITEM_ERROR":
+            return {
+                ...state,
+                stagedList: {
+                    ...state.stagedList,
+                    newItemError: action.errorMessage,
+                }
+            }
+        case "ADD_ITEM_TO_STAGED":
+            return {
+                ...state,
+                stagedList: {
+                    ...state.stagedList,
+                    items: state.stagedList.items.concat({item: action.newItem, complete: false})
+                }
+            }
         default:
             return state
     }

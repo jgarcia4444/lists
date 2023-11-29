@@ -9,7 +9,6 @@ import setListName from '../../redux/actions/listActions/setListName';
 const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setListNameError, itemListAppend, clearStagedList}) => {
 
     const [newListName, setNewListName] = useState("");
-    const [newItemText, setNewItemText] = useState("");
 
     const {creatingList, stagedList, listNameError} = listCreation;
     const {items, listName} = stagedList;
@@ -28,15 +27,6 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
         }
     }
 
-    const handleAddItemClick = () => {
-        if (newItemText !== "") {
-            const newItem = {item: newItemText, complete: false}
-            itemListAppend(newItem);
-            setNewItemText("");
-        }
-        setNewItemText("");
-    }
-
     const handleCompleteClick = (itemIndex) => {
         // update the items array using the item index
         // Update the the complete property to the opposite of what it is
@@ -44,7 +34,6 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
 
     const clearStagedInfo = () => {
         clearStagedList()
-        setNewItemText("");
         dispatch(toggleCreatingList);
     }
 
@@ -57,17 +46,9 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
         clearStagedInfo()
     }
 
-    const clearInput = () => {
-        setNewItemText("");
-    }
-
     const stateBasedListCreation = () => {
         if (creatingList) {
-            const newItemObject = {
-                newItemText, 
-                changeFunc: (val) => setNewItemText(val.target.value),
-            }
-            return <AddItems clearInput={clearInput} handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} newItemInfo={newItemObject} />
+            return <AddItems handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} />
         } else {
             const listNameObject = {
                 newListName,

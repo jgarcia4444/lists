@@ -3,7 +3,7 @@ import FormInputLabel from '../../labels';
 
 const HeaderInput = ({valueInfo, label, itemSubmitted=false, clearInput=null}) => {
 
-    const {listName, changeFunc,} = valueInfo
+    const {listName="", changeFunc,} = valueInfo
 
     const handleClick = () => {
         if (itemSubmitted === true) {
@@ -11,10 +11,6 @@ const HeaderInput = ({valueInfo, label, itemSubmitted=false, clearInput=null}) =
             clearInput()
         }
     }
-
-    useEffect(() => {
-
-    },[listName])
 
     return (
         <div className="w-full">
