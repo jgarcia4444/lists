@@ -11,17 +11,17 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
     const [newListName, setNewListName] = useState("");
     const [newItemText, setNewItemText] = useState("");
 
-    const {creatingList, stagedList} = listCreation;
+    const {creatingList, stagedList, listNameError} = listCreation;
     const {itemList, listName} = stagedList;
 
     const dispatch = useDispatch();
     
-    const toggleCreatingList = dispatch({type: "TOGGLE_CREATING_LIST"});
+    const toggleCreatingList = {type: "TOGGLE_CREATING_LIST"}
 
     const handleCreateClick = () => {
         if (newListName !== "") {
             setListName(newListName);
-            toggleCreatingList();
+            dispatch(toggleCreatingList);
             setListNameError("");
         } else {
             setListNameError("Cannot be left blank");
@@ -45,7 +45,7 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
     const clearStagedInfo = () => {
         clearStagedList()
         setNewItemText("");
-        toggleCreatingList();
+        dispatch(toggleCreatingList);
     }
 
     const handleSaveList = () => {
@@ -59,7 +59,6 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
 
     const clearInput = () => {
         setNewItemText("");
-        setItemSubmitted(false);
     }
 
     const stateBasedListCreation = () => {
@@ -68,7 +67,7 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
                 newItemText, 
                 changeFunc: (val) => setNewItemText(val.target.value),
             }
-            return <AddItems clearInput={clearInput} itemSubmitted={itemSubmitted} handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
+            return <AddItems clearInput={clearInput} handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} addItemClick={handleAddItemClick} listName={listName} list={itemList} newItemInfo={newItemObject} />
         } else {
             const listNameObject = {
                 newListName,

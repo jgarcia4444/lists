@@ -1,15 +1,23 @@
 import React from 'react'
+import {connect} from 'react-redux';
 
 import FormInputLabel from '../../../../../shared/labels';
 import ListItem from '../../../../../shared/lists/ListItem';
 
-const StagedList = ({listName, list, handleCompleteClick}) => {
+const StagedList = ({stagedList, handleCompleteClick}) => {
+
+    const {listName, items} = stagedList;
+
     const renderItems = () => {
-        return list.map((itemInfo, i) => {
-            let adjustedItemInfo = itemInfo;
-            adjustedItemInfo["id"] = i;
-            return <ListItem handleCompleteClick={handleCompleteClick} itemInfo={adjustedItemInfo} key={`${i}-${itemInfo.item}`} />
-        } )
+        if (items.length > 0) {
+            return items.map((itemInfo, i) => {
+                let adjustedItemInfo = itemInfo;
+                adjustedItemInfo["id"] = i;
+                return <ListItem handleCompleteClick={handleCompleteClick} itemInfo={adjustedItemInfo} key={`${i}-${itemInfo.item}`} />
+            } )
+        } else {
+            return ""
+        }
     }
 
     return (
@@ -24,4 +32,13 @@ const StagedList = ({listName, list, handleCompleteClick}) => {
     )
 }
 
-export default StagedList;
+const mapStateToProps = state => {
+    return {
+        stagedList: state.listCreation.stagedList,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(StagedList);
