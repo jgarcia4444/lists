@@ -15,7 +15,6 @@ const List = ({listInfo, index}) => {
     };
 
     const dynamicBackground = () => {
-        console.log(bgColorArray[index])
         return bgColorArray[index];
     }
 

@@ -9,13 +9,9 @@ const StagedList = ({stagedList, handleCompleteClick}) => {
     const {listName, items} = stagedList;
 
     const renderItems = () => {
-        // if (items.length > 0) {
-            return items.map((itemInfo, i) => {
-                return <ListItem id={i} handleCompleteClick={handleCompleteClick} itemInfo={itemInfo} key={`${i}-${itemInfo.item}`} />
-            } )
-        // } else {
-        //     return ""
-        // }
+        return items.map((itemInfo, i) => {
+            return <ListItem id={i} handleCompleteClick={handleCompleteClick} itemInfo={itemInfo} key={`${i}-${itemInfo.item}`} />
+        } )
     }
 
     return (

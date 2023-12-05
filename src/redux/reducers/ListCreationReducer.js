@@ -80,6 +80,26 @@ const ListCreationReducer = (state=initialState, action) => {
                     newItemText: action.val
                 }
             }
+        case "ITEM_COMPLETE_CLICKED":
+            const items = state.stagedList.items;
+            const completeUpdatedItems = items.map(listItem => {
+                if (listItem.item === action.itemId) {
+                    return {
+                        item: listItem.item,
+                        id: listItem.id,
+                        complete: !listItem.complete,
+                    }
+                } else {
+                    return listItem;
+                }
+            })
+            return {
+                ...state,
+                stagedList: {
+                    ...state.stagedList,
+                    items: completeUpdatedItems,
+                }
+            }
         default:
             return state
     }
