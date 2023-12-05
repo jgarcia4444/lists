@@ -4,6 +4,7 @@ const initialState = {
     creatingList: false,
     listNameError: "",
     stagedList: {
+        newItemText: "",
         newItemError: "",
         listName: "",
         items: [],
@@ -67,7 +68,16 @@ const ListCreationReducer = (state=initialState, action) => {
                 ...state,
                 stagedList: {
                     ...state.stagedList,
-                    items: state.stagedList.items.concat({item: action.newItem, complete: false})
+                    items: state.stagedList.items.concat({item: action.newItem, complete: false}),
+                    newItemText: "",
+                }
+            }
+        case "UPDATE_NEW_ITEM_TEXT":
+            return {
+                ...state,
+                stagedList: {
+                    ...state.stagedList,
+                    newItemText: action.val
                 }
             }
         default:
