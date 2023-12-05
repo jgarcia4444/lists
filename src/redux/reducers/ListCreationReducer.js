@@ -100,6 +100,15 @@ const ListCreationReducer = (state=initialState, action) => {
                     items: completeUpdatedItems,
                 }
             }
+        case "REMOVE_ITEM":
+            const removedItemItems = state.stagedList.items.filter(listItem => listItem.item !== action.itemName)
+            return {
+                ...state,
+                stagedList: {
+                    ...state.stagedList,
+                    items: removedItemItems
+                }
+            }
         default:
             return state
     }

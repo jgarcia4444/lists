@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { FiMoreHorizontal } from "react-icons/fi";
 
 import completeClicked from '../../../redux/actions/listActions/completeClicked';
+import removeItem from '../../../redux/actions/listActions/removeItem';
 
 import ItemMenu from '../../menus/ItemMenu';
 
-const ListItem = ({itemInfo, id, completeClicked}) => {
+const ListItem = ({itemInfo, id, completeClicked, removeItem}) => {
     const {item, complete} = itemInfo; 
 
     const [showItemMenu, setShowItemMenu] = useState(false);
@@ -29,7 +30,7 @@ const ListItem = ({itemInfo, id, completeClicked}) => {
             </div>
             <div className="w-1/4 flex justify-end pr-2 ">
                 {showItemMenu === true ?
-                    <ItemMenu dismiss={() => setShowItemMenu(!showItemMenu)} />
+                    <ItemMenu destroy={() => removeItem(item)} dismiss={() => setShowItemMenu(!showItemMenu)} />
                 :
                     <FiMoreHorizontal onClick={() => presentMenu()} className={` text-blue-400 rounded hover:cursor-pointer text-opacity-70 hover:text-blue-200 transition-all duration-300`}  size={24} />
                 }
@@ -40,7 +41,8 @@ const ListItem = ({itemInfo, id, completeClicked}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        completeClicked: (item) => dispatch(completeClicked(item))
+        completeClicked: (item) => dispatch(completeClicked(item)),
+        removeItem: (itemName) => dispatch(removeItem(itemName)),
     }
 }
 
