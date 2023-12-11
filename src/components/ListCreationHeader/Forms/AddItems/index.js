@@ -1,8 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux';
+
 import AddItemsForm from './AddItemsForm';
 import StagedList from './StagedList';
 
-const AddItems = ({ newItemInfo, addItemClick, handleCompleteClick, handleSaveList, clearInput}) => {
+import saveStagedList from '../../../../redux/actions/myLists/saveStagedList';
+
+const AddItems = ({ newItemInfo, addItemClick, handleCompleteClick,  clearInput, saveStagedList, stagedList}) => {
+
+    const {listName, items} = stagedList;
+
+    const handleSaveList = () => {
+
+    }
 
     return (
         <div className="flex flex-row mt-12">
@@ -17,4 +27,19 @@ const AddItems = ({ newItemInfo, addItemClick, handleCompleteClick, handleSaveLi
     )
 }
 
-export default AddItems;
+const mapStateToProps = state => {
+    return {
+        stagedList: state.listCreation.stagedList,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        saveStagedList: (stagedList) => dispatch(saveStagedList(stagedList)),
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AddItems);

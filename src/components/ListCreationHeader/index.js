@@ -48,7 +48,7 @@ const ListCreationHeader = ({sendListToMyList, setListName, listCreation, setLis
 
     const stateBasedListCreation = () => {
         if (creatingList) {
-            return <AddItems handleSaveList={handleSaveList} handleCompleteClick={handleCompleteClick} />
+            return <AddItems handleCompleteClick={handleCompleteClick} />
         } else {
             const listNameObject = {
                 newListName,
