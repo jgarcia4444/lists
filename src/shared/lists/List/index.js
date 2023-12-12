@@ -3,12 +3,12 @@ import ListItem from '../ListItem';
 
 const List = ({listInfo, index}) => {
 
-    const {listName, itemList} = listInfo;
+    const {listName, items} = listInfo;
 
     const bgColorArray = ["bg-opacity-90", "bg-opacity-60", "bg-opacity-30"];
-
+//
     const renderListItems = () => {
-        return itemList.map((itemInfo, i) => {
+        return items.map((itemInfo, i) => {
             itemInfo["id"] = i
             return <ListItem itemInfo={itemInfo} key={`${itemInfo.listName}-${i}`} />
         } )

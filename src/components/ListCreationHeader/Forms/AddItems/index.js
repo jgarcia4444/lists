@@ -11,7 +11,18 @@ const AddItems = ({ newItemInfo, addItemClick, handleCompleteClick,  clearInput,
     const {listName, items} = stagedList;
 
     const handleSaveList = () => {
-
+        if (listName !== "") {
+            if (items.length > 0) {
+                saveStagedList({
+                    listName,
+                    items
+                })
+            } else {
+                // items error
+            }
+        } else {
+            // list name error
+        }
     }
 
     return (

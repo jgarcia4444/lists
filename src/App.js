@@ -15,7 +15,7 @@ const App = () => {
     <div className="App px-2 py-4">
       <h1 className="text-6xl text-blue-500 font-sans">Lists</h1>
       <ListCreationHeader sendListToMyList={sendListToMyList} />
-      <MyLists myLists={myLists} />
+      <MyLists />
     </div>
   );
 }

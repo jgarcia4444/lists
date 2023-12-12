@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 
 import List from '../../shared/lists/List';
 
@@ -20,4 +21,13 @@ const MyLists = ({myLists}) => {
     )
 };
 
-export default MyLists
+const mapStateToProps = state => {
+    return {
+         myLists: state.lists.myLists,
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(MyLists);
