@@ -23,7 +23,7 @@ const MyLists = ({myLists}) => {
 
 const mapStateToProps = state => {
     return {
-         myLists: state.lists.myLists,
+        myLists: state.lists.myLists,
     }
 }
 
