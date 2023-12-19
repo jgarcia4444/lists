@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { FiMoreHorizontal } from "react-icons/fi";
 
 import completeClicked from '../../../redux/actions/listActions/completeClicked';
 import removeItem from '../../../redux/actions/listActions/removeItem';
@@ -8,14 +7,8 @@ import removeItem from '../../../redux/actions/listActions/removeItem';
 import ListItemActionButton from './ListItemActionButton';
 
 
-const ListItem = ({itemInfo, id, completeClicked, removeItem}) => {
+const ListItem = ({itemInfo, id, completeClicked}) => {
     const {item, complete} = itemInfo; 
-
-    const [showItemMenu, setShowItemMenu] = useState(false);
-
-    const presentMenu = () => {
-        setShowItemMenu(!showItemMenu);
-    }
 
     return (
         <div className={`flex flex-row py-2 bg-black transition-all duration-300 mb-1 rounded-lg ${id % 2 === 0 ? "bg-opacity-10 hover:bg-opacity-20" : "bg-opacity-50 hover:bg-opacity-60"}`}>
@@ -37,7 +30,6 @@ const ListItem = ({itemInfo, id, completeClicked, removeItem}) => {
 const mapDispatchToProps = dispatch => {
     return {
         completeClicked: (item) => dispatch(completeClicked(item)),
-        removeItem: (itemName) => dispatch(removeItem(itemName)),
     }
 }
 
