@@ -13,6 +13,10 @@ const initialState = {
 
 const ListCreationReducer = (state=initialState, action) => {
     switch(action.type) {
+        case "SAVE_STAGED_LIST":
+            return {
+                ...initialState,
+            };
         case "SET_LIST_NAME":
             return {
                 ...state,
