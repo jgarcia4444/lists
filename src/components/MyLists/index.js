@@ -14,9 +14,9 @@ const MyLists = ({myLists}) => {
             <div className="w-full">
                 <h2 className="text-xl font-bold text-blue-500">My List{myLists.length > 1 ? "s" : ""}</h2>
             </div>
-        <div className="flex flex-row items-center overflow-x-auto w-full">
-            {renderMyLists()}
-        </div>
+            <div className="flex flex-row items-center overflow-x-auto w-full">
+                {renderMyLists()}
+            </div>
         </div>
     )
 };

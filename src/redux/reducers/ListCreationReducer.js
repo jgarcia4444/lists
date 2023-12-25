@@ -68,6 +68,7 @@ const ListCreationReducer = (state=initialState, action) => {
                 }
             }
         case "ADD_ITEM_TO_STAGED":
+            console.log("Reducer Triggered", action);
             return {
                 ...state,
                 stagedList: {
