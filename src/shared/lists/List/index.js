@@ -12,7 +12,7 @@ const List = ({listInfo, index, removeMyList}) => {
 
     const renderListItems = () => {
         return items.map((itemInfo, i) => {
-            return <ListItem itemInfo={itemInfo} id={i} key={`${itemInfo.listName}-${i}`} />
+            return <ListItem listName={listName} itemInfo={itemInfo} id={i} key={`${itemInfo.listName}-${i}`} />
         } )
     };
 
