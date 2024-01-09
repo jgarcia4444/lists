@@ -11,7 +11,6 @@ const ListItem = ({itemInfo, id, myListCompleteClicked, stagedItemCompleteClicke
     const {item, complete} = itemInfo; 
 
     const handleCompleteClick = () => {
-        console.log(itemInfo)
         if (listName !== undefined) {
             let myListInfo = {
                 listName,

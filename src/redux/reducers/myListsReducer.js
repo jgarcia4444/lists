@@ -6,23 +6,28 @@ const initialState = {
 const myListsReducer = (state=initialState, action) => {
     switch(action.type) {
         case "MY_LIST_COMPLETE_CLICKED":
-            let {listName, item} = action.listInfo;
-            let listToAlter = state.myLists.filter(list => list.listName === listName)[0];
-            let items = listToAlter.items;
-            let updatedItems = items.map(listItem => {
+            let {listInfo} = action;
+            let {listName, item} = listInfo;
+            const targetedList = state.myLists.filter(list => list.listName === listName)[0];
+            const targetedListItems = targetedList.items;
+            var itemIndex;
+            targetedListItems.forEach((listItem, i)=> {
                 if (listItem.item === item) {
-                    return {
-                        item: listItem.item,
-                        id: listItem.id,
-                        complete: !listItem.complete,
-                    }
-                } else {
-                    return listItem;
+                    itemIndex = i;
                 }
             });
-            listToAlter.items = updatedItems;
+            let itemToAlter = targetedListItems[itemIndex];
+            let alteredItems = targetedListItems.slice(0, itemIndex);
+            alteredItems.push({item: item, completed: !itemToAlter.completed})
+            alteredItems += targetedListItems.slice(itemIndex + 1);
+
+            targetedList.items = alteredItems;
+
+            let newMyLists = state.myLists.slice(0, targetedList.listId) + targetedList + state.myLists.slice(targetedList.listId + 1);
+
             return {
                 ...state,
+                myLists: newMyLists,
             }
         case "REMOVE_MY_LIST":
             return {
